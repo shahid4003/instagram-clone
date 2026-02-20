@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ES2020",
-    "rootDir": "./",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true,
+    "target": "ES2020", // JavaScript version to output
+    "module": "CommonJS", // Node.js uses CommonJS modules
+    "rootDir": "./", // Your TypeScript source folder
+    "outDir": "./dist", // Output folder for compiled JS
+    "strict": true, // Enable all strict type checks
+    "esModuleInterop": true, // For default imports of CommonJS modules
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "sourceMap": true,
-    "moduleResolution": "node",
+    "sourceMap": true, // Optional: helps debugging,,,
+    "allowImportingTsExtensions": true, // Allow importing .ts files directly
+    "noEmit": true, // Don't emit compiled files (recommended with allowImportingTsExtensions)
   },
-  "include": ["src/**/*", "generated/**/*"],
-  "exclude": ["node_modules", "dist"],
+  "include": ["src/**/*"], // Include all TS files in src
+  "exclude": ["node_modules", "dist"], // Ignore these folders,,,
 }
