@@ -1,5 +1,6 @@
-import { shuffleArray } from "#utils/shuffleArray";
+
 import { prisma } from "../config/db";
+import { shuffleArray } from "../utils/shuffleArray";
 
 export const getFeed = async (req: any, res: any) => {
   try {
