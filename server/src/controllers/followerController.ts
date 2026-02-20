@@ -1,4 +1,4 @@
-import { prisma } from "../config/db";
+import { prisma } from "../config/db.js";
 
 export const followUser = async (req: any, res: any) => {
   const followerId = req.user.id;

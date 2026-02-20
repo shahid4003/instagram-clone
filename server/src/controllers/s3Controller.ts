@@ -1,5 +1,5 @@
-import { createPresignedPost } from "../utils/s3";
-import config from "../config/s3";
+import { createPresignedPost } from "../utils/s3.js";
+import config from "../config/s3.js";
 
 export const uploadToS3 = async (req: any, res: any) => {
   try {

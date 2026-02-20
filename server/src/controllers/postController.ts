@@ -1,4 +1,4 @@
-import { prisma } from "../config/db";
+import { prisma } from "../config/db.js";
 
 export const createPost = async (req: any, res: any) => {
   const { userId, caption, image, video } = req.body;

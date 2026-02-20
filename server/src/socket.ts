@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import { prisma } from "./config/db";
+import { prisma } from "./config/db.js";
 
 export const initSocket = (server: any) => {
   const io = new Server(server, {

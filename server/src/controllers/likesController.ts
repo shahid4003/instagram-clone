@@ -1,4 +1,4 @@
-import { prisma } from "../config/db";
+import { prisma } from "../config/db.js";
 
 export const likeController = async (req: any, res: any) => {
   const { postId } = req.params;
