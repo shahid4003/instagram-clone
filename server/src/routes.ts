@@ -1,17 +1,17 @@
-import express from "express";
-import { login, register, logout } from "./controllers/authController";
-import { getProfile, getUserById, updateUser, getUserByUsername } from "./controllers/userController";
-import { followUser, getFollowing, getFollowingByUserId, getFollowers, getFollowersByUserId, unfollowUser } from "./controllers/followerController";
-import { addMedia, createPost, deletePost, getAllPosts, getPostById, updatePost } from "./controllers/postController";
-import { likeController, unLikeController, getPostLikes } from "./controllers/likesController";
-import { deleteComment, getComments, newComment } from "./controllers/commentsController";
-import { createStory, deleteStory, getStories, markStoryAsViewed, updateStoryMedia } from "./controllers/storyController";
-import { getFeed } from "./controllers/feedController";
-import { uploadToS3, getSignedUrl } from "./controllers/s3Controller";
-import { getSuggestedUsers } from "./controllers/recommendationController";
-import { getUserMessages } from "./controllers/mesageController";
+import express, { Router } from "express";
+import { login, register, logout } from "./controllers/authController.js";
+import { getProfile, getUserById, updateUser, getUserByUsername } from "./controllers/userController.js";
+import { followUser, getFollowing, getFollowingByUserId, getFollowers, getFollowersByUserId, unfollowUser } from "./controllers/followerController.js";
+import { addMedia, createPost, deletePost, getAllPosts, getPostById, updatePost } from "./controllers/postController.js";
+import { likeController, unLikeController, getPostLikes } from "./controllers/likesController.js";
+import { deleteComment, getComments, newComment } from "./controllers/commentsController.js";
+import { createStory, deleteStory, getStories, markStoryAsViewed, updateStoryMedia } from "./controllers/storyController.js";
+import { getFeed } from "./controllers/feedController.js";
+import { uploadToS3, getSignedUrl } from "./controllers/s3Controller.js";
+import { getSuggestedUsers } from "./controllers/recommendationController.js";
+import { getUserMessages } from "./controllers/mesageController.js";
 
-const router = express.Router();
+const router: Router = express.Router();
 
 router.post("/auth/signup", register);
 router.post("/auth/login", login);
