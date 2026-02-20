@@ -24,7 +24,7 @@ export const getSuggestedUsers = async (req: any, res: any) => {
       },
     });
 
-    const followingUsers = following.map((f) => f.following.id);
+    const followingUsers = following.map((f: any) => f.following.id);
 
     const friendsOfFriends = await prisma.follower.findMany({
       where: {
@@ -53,7 +53,7 @@ export const getSuggestedUsers = async (req: any, res: any) => {
 
     const suggestionsMap: { [key: string]: any } = {};
 
-    friendsOfFriends.forEach((s) => {
+    friendsOfFriends.forEach((s: any) => {
       const id = s.following.id;
       if (!suggestionsMap[id]) {
         suggestionsMap[id] = { user: s.following, mutuals: [] };

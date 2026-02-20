@@ -22,7 +22,7 @@ export const getFeed = async (req: any, res: any) => {
         },
       },
     });
-    const followingIds = following.map((f) => f.followingId);
+    const followingIds = following.map((f: any) => f.followingId);
 
     const followingPosts = await prisma.post.findMany({
       where: { userId: { in: followingIds } },
@@ -62,10 +62,10 @@ export const getFeed = async (req: any, res: any) => {
       },
     });
     const popularPosts = popularPostsRaw
-      .map((p) => ({ ...p, score: p._count.likes * 3 + p._count.comments * 5 }))
-      .sort((a, b) => b.score - a.score)
+      .map((p: any) => ({ ...p, score: p._count.likes * 3 + p._count.comments * 5 }))
+      .sort((a: any, b: any) => b.score - a.score)
       .slice(0, 10)
-      .filter((p) => !followingPosts.some((f) => f.id === p.id));
+      .filter((p: any) => !followingPosts.some((f: any) => f.id === p.id));
 
     const combinedPosts = [...followingPosts, ...popularPosts];
     const feedPosts = shuffleArray(combinedPosts);

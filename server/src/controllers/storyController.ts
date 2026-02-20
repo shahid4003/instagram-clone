@@ -71,7 +71,7 @@ export const getStories = async (req: any, res: any) => {
     });
 
     const formattedSelfStories = await Promise.all(
-      selfStories.map(async (story) => {
+      selfStories.map(async (story: any) => {
         const storyViews = await prisma.storyView.findMany({
           where: {
             storyId: story.id,
@@ -91,7 +91,7 @@ export const getStories = async (req: any, res: any) => {
           },
         });
 
-        const viewers = storyViews.map((view) => ({
+        const viewers = storyViews.map((view: any) => ({
           id: view.user.id,
           username: view.user.username,
           img: view.user.img,
@@ -110,7 +110,7 @@ export const getStories = async (req: any, res: any) => {
     );
 
     const formattedOtherStories = await Promise.all(
-      otherStories.map(async (story) => {
+      otherStories.map(async (story: any) => {
         const userView = await prisma.storyView.findUnique({
           where: {
             userId_storyId: {
