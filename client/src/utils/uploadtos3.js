@@ -1,6 +1,6 @@
 import api from "./api";
 
-export const uploadMedia = async (file, postIdToUse, user, avatar = false, story = false,) => {
+export const uploadMedia = async (file, postIdToUse, user, avatar = false, story = false) => {
   let key;
   if (avatar) {
     key = `avatar-${user.username}-${Date.now()}`.replace(/\s+/g, "_");
@@ -23,8 +23,10 @@ export const uploadMedia = async (file, postIdToUse, user, avatar = false, story
     postId: postIdToUse,
     avatar: avatar || false,
     story: story || false,
-    storyId: story ? postIdToUse : null
+    storyId: story ? postIdToUse : null,
   });
+
+
   const { signedUrl, fileLink } = res.data.data;
 
   const uploadRes = await fetch(signedUrl, {
@@ -32,26 +34,40 @@ export const uploadMedia = async (file, postIdToUse, user, avatar = false, story
     headers: { "Content-Type": file.type },
     body: file,
   });
+  if (!uploadRes.ok) {
+    const errText = await uploadRes.text();
+    console.error("❌ S3 PUT failed response:", errText);
+    throw new Error("S3 upload failed");
+  }
 
-  if (!uploadRes.ok) throw new Error("S3 upload failed");
+  console.log("✅ S3 upload successful");
 
-  const resS3 = await api.get(
-    `/s3/url/${encodeURIComponent(s3Key)}`
-  );
+ 
+ const resS3 = await api.get('/s3/url', { params: { key: s3Key } });
+
+
   const { url: fileUrl } = resS3.data;
+ 
+
   let imageUrl = null;
   let videoUrl = null;
-
   if (file.type.startsWith("image/")) {
     imageUrl = fileUrl;
   } else if (file.type.startsWith("video/")) {
     videoUrl = fileUrl;
   }
+
+  console.log("🖼️ imageUrl:", imageUrl, "🎥 videoUrl:", videoUrl);
+
   if (avatar) {
     await api.put("/user/me", { img: imageUrl });
+    console.log("✅ Avatar updated");
   } else if (story) {
     await api.put(`/story/${postIdToUse}/media`, { image: imageUrl, video: videoUrl });
+    console.log("✅ Story media updated");
   } else {
     await api.put(`/post/${postIdToUse}/media`, { image: imageUrl, video: videoUrl });
+    console.log("✅ Post media updated");
   }
+
 };

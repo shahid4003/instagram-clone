@@ -220,7 +220,7 @@ const AdminLayout = ({ children, showSuggestions, icon_Sidebar = false }) => {
           showFullSidebar ? "ml-[245px]" : "ml-[80px]"
         } pt-14 pb-16 md:pb-0 md:pt-0 transition-all duration-300`}
       >
-        <main className="flex-1 mx-auto py-4 md:py-6 px-3 sm:px-4 w-full max-w-[36rem] md:max-w-3xl lg:max-w-4xl">
+        <main className="flex-1 mx-auto py-4 md:py-6 px-3 sm:px-4 w-full max-w-[36rem] md:max-w-3xl lg:max-w-6xl">
           {children}
         </main>
         {showSuggestions && (

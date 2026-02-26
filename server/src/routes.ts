@@ -55,6 +55,6 @@ router.put("/story/:storyId/media", updateStoryMedia);
 router.get("/feed", getFeed);
 
 router.post("/s3/upload", uploadToS3);
-router.get("/s3/url/:key", getSignedUrl);
+router.get("/s3/url/", getSignedUrl);
 
 export default router;

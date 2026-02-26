@@ -22,7 +22,16 @@ export const uploadToS3 = async (req: any, res: any) => {
 
 export const getSignedUrl = async (req: any, res: any) => {
   try {
-    const { key } = req.params;
+    console.log("=== DEBUG ===");
+  console.log("Original URL:", req.originalUrl);
+  console.log("Path:", req.path);
+  console.log("Query:", req.query);
+  console.log("Params:", req.params);
+
+	  const key = req.query.key || req.params[0]; // Support both
+    if (!key) {
+      return res.status(400).json({ status: "error", message: "Key required" });
+    }
     const url = `https://${config.CLOUDFRONT_DOMAIN}/${key}`;
     res.json({ status: "success", url });
   } catch (err) {

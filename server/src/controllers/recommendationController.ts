@@ -69,7 +69,8 @@ export const getSuggestedUsers = async (req: any, res: any) => {
         mutuals: s.mutuals,
         mutualCount: s.mutuals.length,
       }))
-      .sort((a, b) => b.mutualCount - a.mutualCount);
+      .sort((a, b) => b.mutualCount - a.mutualCount)
+      .slice(0, 10); 
 
     res.status(200).json({ suggestions });
   } catch (error) {

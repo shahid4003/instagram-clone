@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 dotenv.config();
-
 const config = {
   PORT: 3000,
   ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID!,
