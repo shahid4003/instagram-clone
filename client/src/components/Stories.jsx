@@ -117,7 +117,7 @@ const Stories = () => {
 
   return (
     <>
-      <div className="flex gap-3 mb-6 overflow-x-auto no-scrollbar px-4 pt-4 bg-white border-b border-gray-100">
+      <div className="flex gap-3 mb-6 max-w-[32rem] mx-auto overflow-x-auto no-scrollbar px-4 pt-4 bg-white border-b border-gray-100">
         {/* Add Story Button */}
         <div className="relative flex-shrink-0">
           <div className="h-[66px] w-[66px] rounded-full bg-gradient-to-br from-gray-200 to-gray-300 p-0.5">

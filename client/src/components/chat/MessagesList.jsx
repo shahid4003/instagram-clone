@@ -11,7 +11,6 @@ const MessagesList = ({ messages }) => {
     scrollToBottom();
   }, [messages]);
 
-  console.log("Rendering MessagesList with messages:", messages);
 
   if (!messages || messages.length === 0) {
     return (

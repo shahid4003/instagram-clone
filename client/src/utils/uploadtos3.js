@@ -40,7 +40,6 @@ export const uploadMedia = async (file, postIdToUse, user, avatar = false, story
     throw new Error("S3 upload failed");
   }
 
-  console.log("✅ S3 upload successful");
 
  
  const resS3 = await api.get('/s3/url', { params: { key: s3Key } });
@@ -57,17 +56,13 @@ export const uploadMedia = async (file, postIdToUse, user, avatar = false, story
     videoUrl = fileUrl;
   }
 
-  console.log("🖼️ imageUrl:", imageUrl, "🎥 videoUrl:", videoUrl);
 
   if (avatar) {
     await api.put("/user/me", { img: imageUrl });
-    console.log("✅ Avatar updated");
   } else if (story) {
     await api.put(`/story/${postIdToUse}/media`, { image: imageUrl, video: videoUrl });
-    console.log("✅ Story media updated");
   } else {
     await api.put(`/post/${postIdToUse}/media`, { image: imageUrl, video: videoUrl });
-    console.log("✅ Post media updated");
   }
 
 };

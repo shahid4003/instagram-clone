@@ -10,4 +10,12 @@ export default defineConfig({
       "/api": "http://localhost:3000",
     },
   },
+	 build: {
+    terserOptions: {
+      compress: {
+        drop_console: true,  // ✅ removes all console.log/error/warn in production
+        drop_debugger: true, // optional: removes debugger statements
+      },
+    },
+  },
 });

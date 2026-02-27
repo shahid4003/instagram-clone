@@ -24,7 +24,7 @@ const PostCard = ({ post, user }) => {
   const [showComments, setShowComments] = useState(false);
   const handleLike = async () => {
     if (!like) {
-      const req = await fetch(`/api/post/like/${post.id}`, {
+      const req = await fetch(`/api/like/${post.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const PostCard = ({ post, user }) => {
         setLike(true);
       }
     } else {
-      const req = await fetch(`/api/post/unlike/${post.id}`, {
+      const req = await fetch(`/api/unlike/${post.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const PostCard = ({ post, user }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg w-full max-w-lg mx-auto">
       <div className="flex items-center justify-between p-3 border-b border-gray-200 ">
-        <div className="flex items-center space-x-3">
+        <a href={`/${userName}`}  className="flex items-center space-x-3">
           <img
             className="w-8 h-8 rounded-full object-cover"
             src={
@@ -65,7 +65,7 @@ const PostCard = ({ post, user }) => {
           <span className="text-sm font-semibold text-gray-900 ">
             {userName}
           </span>
-        </div>
+        </a>
         <button aria-label="More options" className="text-gray-900 ">
           <svg
             className="w-5 h-5"

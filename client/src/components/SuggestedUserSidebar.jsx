@@ -21,7 +21,6 @@ const SuggestedUserSidebar = () => {
   const handleFollow = async (user) => {
     try {
       const response = await api.post("/follow/follow-user", { followingId: user.id });
-      console.log("Follow response:", response.data);
       toast.success(`You followed ${user.username} successfully!`);
 
       // Remove followed user from suggestions

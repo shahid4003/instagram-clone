@@ -39,7 +39,7 @@ router.delete("/post/:id", deletePost);
 router.put("/post/:postId/media", addMedia);
 
 router.post("/like/:postId", likeController);
-router.delete("/like/:postId", unLikeController);
+router.delete("/unlike/:postId", unLikeController);
 router.get("/like/:postId", getPostLikes);
 
 router.post("/comment", newComment);

@@ -128,7 +128,6 @@ const Profile = () => {
       : listModal.type === "following"
         ? listData.map((entry) => entry.following).filter(Boolean)
         : [];
-console.log(user)
   return (
     <AdminLayout showSuggestions={false}>
       <main className="bg-white text-gray-900 min-h-screen border-t border-gray-200">
@@ -368,13 +367,13 @@ console.log(user)
                       <div className="flex items-center space-x-1">
                         <Heart size={16} />
                         <span className="text-sm font-semibold">
-                          {post.likes || 0}
+                          {post.likes?.length || 0}
                         </span>
                       </div>
                       <div className="flex items-center space-x-1">
                         <MessageCircle size={16} />
                         <span className="text-sm font-semibold">
-                          {post.comments || 0}
+                          {post.comments?.lenght || 0}
                         </span>
                       </div>
                     </div>
@@ -467,7 +466,7 @@ console.log(user)
                         key={entry.id}
                         className="flex items-center justify-between px-5 py-3"
                       >
-                        <div className="flex items-center gap-3">
+                        <a href={`/${entry?.userName}`} className="flex items-center gap-3">
                           {entry.img ? (
                             <img
                               src={entry.img}
@@ -487,7 +486,7 @@ console.log(user)
                               {entry.name || entry.username}
                             </p>
                           </div>
-                        </div>
+                        </a>
                       </div>
                     ))}
                   </div>

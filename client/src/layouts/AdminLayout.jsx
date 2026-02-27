@@ -11,7 +11,9 @@ import { FiSend } from "react-icons/fi";
 import SuggestedUserSidebar from "../components/SuggestedUserSidebar";
 import useFetch from "../hooks/UseFetch";
 
-const AdminLayout = ({ children, showSuggestions, icon_Sidebar = false }) => {
+const AdminLayout = ({ children, showSuggestions, icon_Sidebar = false }) =>{
+	const location = useLocation();
+  const isMessagesPage = location.pathname.startsWith("/messages");
   const [showFullSidebar, setShowFullSidebar] = useState(!icon_Sidebar);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data = {} } = useFetch({ url: "/user/me" });
@@ -20,7 +22,6 @@ const AdminLayout = ({ children, showSuggestions, icon_Sidebar = false }) => {
     img && img.trim().length > 0
       ? img
       : "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=80&q=80";
-  const location = useLocation();
 
   const menuItems = [
     { icon: AiOutlineHome, label: "Home", href: "/" },
@@ -220,7 +221,13 @@ const AdminLayout = ({ children, showSuggestions, icon_Sidebar = false }) => {
           showFullSidebar ? "ml-[245px]" : "ml-[80px]"
         } pt-14 pb-16 md:pb-0 md:pt-0 transition-all duration-300`}
       >
-        <main className="flex-1 mx-auto py-4 md:py-6 px-3 sm:px-4 w-full max-w-[36rem] md:max-w-3xl lg:max-w-6xl">
+        <main  className={`flex-1 mx-auto py-4 md:py-6 w-full
+        ${
+          isMessagesPage
+            ? "max-w-7xl px-4"   // Wider for messages
+            : "max-w-[36rem] md:max-w-3xl lg:max-w-6xl px-3 sm:px-4"
+        }
+      `}>
           {children}
         </main>
         {showSuggestions && (
@@ -231,6 +238,6 @@ const AdminLayout = ({ children, showSuggestions, icon_Sidebar = false }) => {
       </div>
     </div>
   );
-};
+}
 
 export default AdminLayout;

@@ -38,11 +38,8 @@ const StoryForm = ({ onClose }) => {
       userId: data.user.id,
     });
     const storyResult = post.data;
-    console.log("Story created:", storyResult);
 
     const storyId = storyResult.story.id;
-    console.log("Story ID:", storyId);
-    console.log("User data:", data.user);
 
     if (file) {
       // Make sure user has required fields
